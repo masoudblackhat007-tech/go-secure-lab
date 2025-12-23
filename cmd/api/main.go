@@ -7,4 +7,10 @@ func main() {
 	age := 1
 
 	fmt.Printf("%s %d\n", message, age)
+
+	if age >= 18 {
+		fmt.Println("adult")
+	} else {
+		fmt.Println("minor")
+	}
 }
