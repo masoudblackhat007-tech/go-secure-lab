@@ -2,7 +2,9 @@ package main
 
 import "fmt"
 
-func main(){
+func main() {
+	message := "my first go program"
+	age := 1
 
-	fmt.Println("hello from go")
+	fmt.Printf("%s %d\n", message, age)
 }
