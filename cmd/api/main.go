@@ -1,10 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
 	var message string = "my first go program"
 	age := 1
 
-	fmt.Println(message, age)
+	ageText := strconv.Itoa(age)
+	fmt.Println(message + " " + ageText)
 }
