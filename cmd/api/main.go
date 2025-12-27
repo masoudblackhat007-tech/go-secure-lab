@@ -1,16 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"log"
+
+	"github.com/masoudblackhat007-tech/go-secure-lab/internal/app"
+)
 
 func main() {
-	message := "my first go program"
-	age := 1
-
-	fmt.Printf("%s %d\n", message, age)
-
-	if age >= 18 {
-		fmt.Println("adult")
-	} else {
-		fmt.Println("minor")
+	a := app.New("go-secure-lab")
+	if err := a.Run(); err != nil {
+		log.Fatal(err)
 	}
 }
