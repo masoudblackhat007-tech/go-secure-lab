@@ -14,12 +14,16 @@ func New(name string) *App {
 	return &App{name: name}
 }
 func (a *App) Run(ctx context.Context) error {
-	time.Sleep(500 * time.Millisecond)
-	select {
-	case <-ctx.Done():
-		return ctx.Err()
-	default:
-		fmt.Println(a.name)
-		return nil
+
+	for i := 0; i < 20; i++ {
+		select {
+		case <-ctx.Done():
+			return ctx.Err()
+		case <-time.After(50 * time.Millisecond):
+			// یک قدم کار (فعلاً فقط هیچ)
+		}
+
 	}
+	fmt.Println(a.name)
+	return nil
 }

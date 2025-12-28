@@ -11,7 +11,7 @@ import (
 func main() {
 	//ctx := context.Background()
 	//ctx, cancel := context.WithCancel(context.Background())
-	ctx, cancel := context.WithTimeout(context.Background(), 200*time.Millisecond)
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 	defer cancel()
 	a := app.New("go-secure-lab")
 	if err := a.Run(ctx); err != nil {
