@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"strconv"
@@ -24,8 +25,12 @@ func main() {
 		Handler: a.Routes(),
 	}
 	log.Println("listening on", serv.Addr)
-
-	if err := serv.ListenAndServe(); err != nil {
+	ln, err := net.Listen("tcp", serv.Addr)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println("listening on", ln.Addr().String())
+	if err := serv.Serve(ln); err != nil {
 		log.Fatal(err)
 	}
 }
