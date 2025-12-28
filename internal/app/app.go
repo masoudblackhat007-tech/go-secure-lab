@@ -1,6 +1,9 @@
 package app
 
-import "fmt"
+import (
+	"context"
+	"fmt"
+)
 
 type App struct {
 	name string
@@ -9,8 +12,12 @@ type App struct {
 func New(name string) *App {
 	return &App{name: name}
 }
-
-func (a *App) Run() error {
-	fmt.Println(a.name)
-	return nil
+func (a *App) Run(ctx context.Context) error {
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	default:
+		fmt.Println(a.name)
+		return nil
+	}
 }
