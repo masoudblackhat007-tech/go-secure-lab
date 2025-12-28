@@ -8,8 +8,9 @@ import (
 )
 
 func main() {
-	ctx := context.Background()
-
+	//ctx := context.Background()
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
 	a := app.New("go-secure-lab")
 	if err := a.Run(ctx); err != nil {
 		log.Fatal(err)
