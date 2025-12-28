@@ -15,6 +15,8 @@ func New(name string) *App {
 }
 func (a *App) Run(ctx context.Context) error {
 
+	ticker := time.NewTicker(50 * time.Millisecond)
+	defer ticker.Stop()
 	for i := 0; i < 20; i++ {
 		select {
 		case <-ctx.Done():
