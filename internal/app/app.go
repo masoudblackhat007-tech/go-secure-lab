@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/masoudblackhat007-tech/go-secure-lab/internal/http/handler"
+	"github.com/masoudblackhat007-tech/go-secure-lab/internal/http/middleware"
 )
 
 type App struct {
@@ -16,6 +17,10 @@ func New(name string) *App {
 
 func (a *App) Routes() http.Handler {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", handler.Hello)
-	return mux
+	h := &handler.Handler{AppName: a.name}
+	mux.HandleFunc("/", h.Hello)
+	mux.HandleFunc("/health", h.Health)
+
+	// اعمال Middleware روی کل مسیرها
+	return middleware.Logging(mux)
 }
