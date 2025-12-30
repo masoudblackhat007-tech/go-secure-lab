@@ -24,7 +24,6 @@ func main() {
 		Addr:    addr,
 		Handler: a.Routes(),
 	}
-	log.Println("listening on", serv.Addr)
 	ln, err := net.Listen("tcp", serv.Addr)
 	if err != nil {
 		log.Fatal(err)
